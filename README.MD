@@ -1,4 +1,4 @@
-# Download musics and videos with no adds
+# Download musics and videos with no ads
 
 ![alt text](assets/image.png)
 
