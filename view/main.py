@@ -1,9 +1,11 @@
-import json
-import os
 from tkinter import *
 from tkinter import filedialog, messagebox
 
-from src.index import download
+import json
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+from index import download
 
 CONFIG_FILE = os.path.expanduser("~/.highload_config.json")
 
