@@ -9,6 +9,11 @@ from index import download
 
 CONFIG_FILE = os.path.expanduser("~/.highload_config.json")
 
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 def load_last_folder():
     if os.path.exists(CONFIG_FILE):
         with open(CONFIG_FILE, "r") as f:
@@ -75,7 +80,7 @@ def main():
     root.geometry("720x420")
     root.configure(bg = background)
 
-    icon = PhotoImage(file="assets/highload.png")  
+    icon = PhotoImage(file=resource_path("assets/highload.png"))
     root.iconphoto(True, icon)
 
     last_folder = load_last_folder()
