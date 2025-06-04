@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['view/main.py'],
+    ['view\\main.py'],
     pathex=['.', './src'],
     binaries=[],
     datas=[('assets/highload.png', 'assets')],
