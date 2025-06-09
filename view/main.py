@@ -27,10 +27,10 @@ def save_last_folder(folder):
 
 def start_download(destination, root, links, option):
     if not links:
-        messagebox.showinfo("Cancelado", "Nenhum link adicionado.")
+        messagebox.showinfo("Canceled", "Links is not added.")
         return
     download(links, destination[0], option)
-    messagebox.showinfo("Concluído", "Downloads finalizados.")
+    messagebox.showinfo("Conclused", "Downloads finished.")
 
 def add_link(entry_link, links, listbox_links):
     link = entry_link.get().strip()
@@ -46,7 +46,7 @@ def remove_selected(links, listbox_links):
         listbox_links.delete(i)
 
 def choose_folder(destination, label_folder):
-    folder = filedialog.askdirectory(title="Selecione a pasta de download")
+    folder = filedialog.askdirectory(title="Select a path to download")
     if folder:
         destination[0] = folder
         save_last_folder(folder)
@@ -90,10 +90,10 @@ def main():
 
     frame_folder = Frame(root, bg = frame_light_background)
     frame_folder.pack(pady=5)
-    label_folder = Label(frame_folder, text=f"Pasta: {destination[0] or 'Nenhuma selecionada'}", bg=label_background, fg = text_color, bd=0, padx=20, pady=10)
+    label_folder = Label(frame_folder, text=f"Pasta: {destination[0] or 'Path not select'}", bg=label_background, fg = text_color, bd=0, padx=20, pady=10)
     label_folder.pack(side=LEFT, padx=5)
     Button(
-        frame_folder, text="Selecionar pasta",
+        frame_folder, text="Select a path",
         bg = button_background, fg= text_color, bd=0, padx=20, pady=10, highlightthickness=0,
         command=lambda: choose_folder(destination, label_folder)
     ).pack(side=LEFT)
@@ -103,7 +103,7 @@ def main():
     entry_link = Entry(link_entry_button_frame, width=50, bg="#666694", fg = text_color,  borderwidth=0, highlightthickness=0)
     entry_link.pack(side=LEFT)
 
-    placeholder_text = " Cole o link aqui..."
+    placeholder_text = " Paste link here..."
     entry_link.insert(0, placeholder_text)
     entry_link.config(fg="#c5c5c5") 
 
@@ -121,7 +121,7 @@ def main():
     entry_link.bind("<FocusOut>", on_entry_focus_out)
 
     Button(
-        link_entry_button_frame, text="Adicionar link",
+        link_entry_button_frame, text="Add link",
         bg = button_background, fg = text_color, bd=0, padx=25, pady=10, borderwidth=0, highlightthickness=0,
         command=lambda: add_link(entry_link, links, listbox_links)
     ).pack(side=LEFT, padx=5)
@@ -131,7 +131,7 @@ def main():
     option_frame = Frame(root, bg=frame_background)
     option_frame.pack(pady=5)
 
-    label_option = Label(option_frame, text="Escolha o formato:", bg=frame_background, fg=text_color)
+    label_option = Label(option_frame, text="Choose format:", bg=frame_background, fg=text_color)
     label_option.pack(side=LEFT, padx=5)
 
     radio_audio = Radiobutton(
@@ -153,7 +153,7 @@ def main():
     action_buttons_frame.pack(pady=5)
 
     button_remove_link = Button(
-        action_buttons_frame, text="Remover selecionado",
+        action_buttons_frame, text="Remove selected",
         command=lambda: remove_selected(links, listbox_links),
         bg = button_background, fg = text_color, bd=0, padx=20, pady=10, borderwidth=0, highlightthickness=0
     )
@@ -162,7 +162,7 @@ def main():
     add_hover_effect(button_remove_link)
 
     button_start_download = Button(
-        action_buttons_frame, text="Iniciar download",
+        action_buttons_frame, text="Start Download",
         command=lambda: start_download(destination, root, links, option.get()),
         bg = button_background, fg = text_color, bd=0, padx=20, pady=10, borderwidth=0, highlightthickness=0
     )
@@ -171,14 +171,14 @@ def main():
     add_hover_effect(button_start_download)
     
     button_quit = Button(
-        action_buttons_frame, text="Sair", command=root.destroy,
+        action_buttons_frame, text="Quit", command=root.destroy,
         bg = button_background, fg = text_color, bd=0, padx=20, pady=10, borderwidth=0, highlightthickness=0
     )
     button_quit.pack(side=LEFT, padx=5)
     add_hover_effect(button_quit)
 
     if last_folder:
-        label_folder.config(text=f"Pasta: {last_folder}")
+        label_folder.config(text=f"Path: {last_folder}")
 
     root.mainloop()
 
